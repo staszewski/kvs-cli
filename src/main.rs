@@ -1,17 +1,12 @@
-use clap::{App, Arg, SubCommand};
-use std::process;
+use std::io;
+use std::io::prelude::*;
 
 fn main() {
-    let matches = App::new("MyApp")
-        .version("1.0")
-        .arg(Arg::with_name("version").long("version").short("V"))
-        .get_matches();
+    print!("Instruction");
+    io::stdout().flush().unwrap();
+    let mut val = String::new();
 
-    if matches.args.is_empty() {
-        process::exit(1);
-    }
-
-    if matches.is_present("version") {
-        println!(env!("CARGO_PKG_VERSION"));
-    }
+    io::stdin()
+        .read_line(&mut val)
+        .expect("Error getting guess");
 }
